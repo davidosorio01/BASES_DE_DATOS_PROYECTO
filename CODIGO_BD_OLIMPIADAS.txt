@@ -1,0 +1,37 @@
+CREATE TABLE player (
+	id INTEGER PRIMARY KEY,
+	nombre TEXT NOT NULL
+);
+
+CREATE TABLE equipos (
+	id INTEGER PRIMARY KEY,
+	nombre TEXT NOT NULL,
+	grado TEXT NOT NULL
+);
+
+CREATE TABLE partidos (
+	id_player INTEGER,
+	id_equipos INTEGER,
+	FOREIGN KEY (id_player) REFERENCES player(id),
+	FOREIGN KEY (id_equipos) REFERENCES equipos(id)
+);
+
+CREATE TABLE torneos (
+	id INTEGER PRIMARY KEY,
+	inicio_torneo INTEGER,
+	final_torneo INTEGER,
+	nombre TEXT NOT NULL
+);
+
+CREATE TABLE equipos_torneo (
+	torneo_id INTEGER,
+	equipo_1 INTEGER,
+	equipo_2 INTEGER,
+	marcador_1 INTEGER,
+	marcador_2 INTEGER,
+	fecha_partido TEXT NOT NULL,
+	FOREIGN KEY (torneo_id) REFERENCES torneos(id),
+	FOREIGN KEY (equipo_1) REFERENCES equipos(id),
+	FOREIGN KEY (equipo_2) REFERENCES equipos(id)
+);
+
